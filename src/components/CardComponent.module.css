@@ -1,0 +1,24 @@
+.wrapper {
+margin: auto;
+}
+.cardHolder {
+  padding: 1rem;
+  width: 20rem;
+  margin: 5rem;
+  background-color: #86A8E7;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.42); 
+box-shadow: 10px 10px 15px 5px rgba(0,0,0,0.30);
+}
+
+
+ul {
+color: white;
+margin: 0 auto;
+Padding: 0;
+font-size: 1.6rem;
+font-weight: 500
+}
+li {
+  padding: .4rem;
+}
