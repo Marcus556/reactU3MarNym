@@ -12,25 +12,47 @@ const UserScreen = (props) => {
   // men address krånglade som fan, hur jag än försökte, så fick plocka ur de ur datan och göra ett obj av det 
   // och sen passa in det.
   useEffect(() => {
-    if (!userid) return
+    if(!userid) return
+    if (idStringCheck(userid)) {
+      setUser(createUserObj(userid, userid, `${userid}.gmail.com`)) 
+    } else if (!idStringCheck(userid)) {
     fetch(`http://api.softhouse.rocks/users/${userid}`)
     .then((response) => {
+      if(response.status === 500) return
       return response.json()
     })
     .then((newUser) => {
-
-      const user = {
-        name: newUser.name,
-        username: newUser.username,
-        email: newUser.email,
-        street: newUser.address.street,
-        zipCode: newUser.address.zipcode,
-        suite: newUser.address.suite,
-        city: newUser.address.city
-      }
+      const user = createUserObj(
+        newUser.name,
+        newUser.username,
+        newUser.email,
+        newUser.address.street,
+        newUser.address.zipcode,
+        newUser.address.suite,
+        newUser.address.city
+      )
       setUser(user)
-    });
-    }, [setUser, userid]);
+    
+    })};
+    }, [props.user, setUser, userid]);
+
+    const idStringCheck = (str) => {
+
+      return str.match("^[a-zA-Z]+$");
+    }
+
+    const createUserObj = (name = 'noName', username = 'noUsername', email = 'noEmail', street = 'noStreet', zipCode = 'noZipcode', suite = 'noSuite', city = 'noCity') => {
+      const user = {
+        name,
+        username,
+        email,
+        street,
+        zipCode,
+        suite,
+        city,
+      }
+      return user
+    }
   
 
     const userAddress = () => {

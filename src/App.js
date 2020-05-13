@@ -14,7 +14,7 @@ class App extends Component {
     this.state = {
       users: [],
       color: "white",
-      user: [{name: ''}],
+      user: [{name: '', id: ''}],
       loggedOn: false,
     };
   }
@@ -45,7 +45,7 @@ class App extends Component {
       users: usersList
     });
     this.setState({
-      user: {name: ''}
+      user: {name: '', id: ''}
     });
   };
 
@@ -59,7 +59,7 @@ class App extends Component {
 
   //Körs onChange i inputbox och tar emot och sätter vår user-array enligt value.
   user = event => {
-    let userObj = {name: event.target.value}
+    let userObj = {name: event.target.value, id: event.target.value}
     this.setState({user:userObj});
   };
 
